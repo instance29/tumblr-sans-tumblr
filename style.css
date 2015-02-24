@@ -1,0 +1,116 @@
+body,
+html,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+figure {
+	padding: 0;
+	margin: 0;
+}
+figure {
+	display: inline-block;
+	-webkit-margin-before: 0;
+	-webkit-margin-after: 0;
+	-webkit-margin-start: 0;
+	-webkit-margin-end: 0;
+}
+#modal {
+	position: fixed !important;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 999;
+	background-color: rgba(0, 0, 0, .9);
+	cursor: default;
+}
+#modal > div {
+	text-transform: uppercase;
+	position: relative;
+	left: 50%;
+	width: 462px;
+	margin-left: -200px;
+	margin-top: 90px;
+	background-color: gold;
+	border-radius: 3px;
+	box-shadow: 0 0 6px 0 rgba(0, 0, 0, 1);
+	font-family: "Oswald", "Helvetica", sans-serif;
+	font-size: .9em;
+}
+#modal > div > div {
+	padding: 15px 15px 30px;
+}
+#modal > div > div p {
+	margin-bottom: 9px;
+	line-height: 1.75;
+	font-size: 105%;
+	color: rgba(0, 0, 0, .6);
+	word-spacing: 0.085em;
+	letter-spacing: 0.025em;
+}
+#modal > div > div span {
+	display: block;
+	text-align: center;
+	font-size: 155%;
+	color: rgba(255, 0, 0, .9);
+	padding-bottom: 15px;
+}
+#modal > div > div p code {
+	padding: 3px;
+	background-color: rgba(0, 0, 0, .05);
+	font-size: 115%;
+	text-transform: none;
+	text-shadow: none;
+	color: white;
+}
+#modal > div > div p:last-of-type {
+	margin-bottom: 0;
+}
+#modal > div > h5 {
+	font-weight: normal;
+	font-size: 350%;
+	line-height: 1;
+	background-color: rgba(0, 0, 0, .2);
+	padding: 9px 0;
+	text-align: center;
+	color: white;
+	border-top: 3px solid gold;
+}
+#modal > div > h5 span {
+	color: rgba(255, 0, 0, .7);
+}
+#blog,
+#blog > div {
+	overflow: hidden;
+	clear: both;
+}
+#postsFull,
+#postsPast {
+	float: left;
+}
+#postsFull {
+	width: 70%;
+}
+#postsPast {
+	width: 30%;
+}
+#postsPast ul {
+	list-style-type: none;
+}
+#postsPast ol {
+	background-color: gold;
+	margin: 0;
+}
+#postsPast ol li {
+	background-color: orangered;
+}
+#postsPast ol li:nth-of-type(2n-1),
+#postsPast ul li:nth-of-type(2n-1) {
+	background-color: orange;
+}
