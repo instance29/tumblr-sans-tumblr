@@ -16,17 +16,24 @@ var username = tumblr_api_read['tumblelog']['name'];
 
 
 // USER DEFINITIONS
-// Set nummber of posts to display
+//
+// Set nummber of full posts to display
 var fullPostsToDisplay = 5;
 
 // Set number of past posts to display
-var pastPostsToDisplay = 99;
+var pastPostsToDisplay = 5;
+
+// ****
+// IMPORTANT: THESE TWO VALUES MUST NOT BE GREATER THAN 50
+// THIS IS A LIMITATION OF THE API
+// ****
 
 // Set the prettified log text on successful loop
 var loopSuccessMessage = "%c Loop finished "; 
 var loopSuccessStyling = "background: #006400; color: #fff; border-radius: 6px;";
 
-var postSuccessMessagePart1 = "%cPost ";
+// Ditto for individual posts successful log
+var postSuccessMessagePart1 = "\t%c Post ";
 var postSuccessMessagePart2 = " successfully listed"
 var postSuccessStyling = ""
 
@@ -39,6 +46,7 @@ var postErrorStyling = "background-color: gold; color: #333; border-radius: 6px;
 
 
 // DEBUG OPTIONS
+//
 // Set to true to better understand how script works
 var debugMode = true;
 
@@ -57,14 +65,20 @@ var debugSectionColor = true;
 // Ditto for OL in pastPosts
 var debugOL = true;
 
+// Ditto for totals at end
+var extraLogs = true;
+
+
+// Set debugOff|On styling
 var debugOnStyling = loopSuccessStyling;
 var debugOffStyling = "background: #8b0000; color: #fff; border-radius: 6px;";
 
 
 
 // MATH
-
-// Posts total is the total number of posts in the feed
+//
+// postsTotal is the total number of posts in the feed
+// The API however only allows for a maximum of 50 posts per page
 // Simplify variable
 var postsTotal = tumblr_api_read['posts-total'];
 
@@ -128,13 +142,15 @@ if(postsShown < totalPostsToDisplay){
 console.log(" tumblr-sans-tumblr.js Initiated");
 
 if(debugMode == true) {
+	// Set debug "ON" styling in console
 	console.log("%c Debug mode : on ", debugOnStyling); 
-	console.log("\t Starting loops ...");
+	console.log(" Starting loops ...");
 } else {
+	// Set debug "OFF" styling in console
 	console.log("%c Debug mode : off ", debugOffStyling);
 }
 
-// Indicate debug mode on
+// Indicate debug mode on in HTML
 if(debugMode == true){
 	document.write(
 		"<div>\n"+
@@ -144,12 +160,14 @@ if(debugMode == true){
 		);
 }
 
-// Display full posts
-if(debugMode == true) {
-	console.log("Displaying " + fullPostsToDisplay + " full posts ...");
-}
 // Wraps both loops in a div
 document.write("<div>");
+
+// DISPLAY FULL POSTS
+//
+if(debugMode == true) {
+	console.log(" Displaying " + fullPostsToDisplay + " full posts ...");
+}
 
 // Wraps the first loop in a div
 // Debug mode on
@@ -250,9 +268,10 @@ if(debugMode == true){
 // Closes first loop div
 document.write("</div>");
 
-// Display past posts step in console
+// DISPLAY PAST POSTS
+//
 if(debugMode == true) {
-	console.log("\nListing the next " + pastPostsToDisplay + " posts ...");
+	console.log(" Listing the next " + pastPostsToDisplay + " posts ...");
 }
 
 // Wraps the second loop in a div
@@ -352,13 +371,17 @@ if(debugMode == true){
 		}
 	} 
 	// Loop complete?
+	// Debug mode on
 	if(debugMode == true) {
 		console.log(loopSuccessMessage, loopSuccessStyling);
 		document.write("</ol>");
+
 	} else {
 		document.write("</ul>");
+
 		if(postsNotShown == 0){
 			document.write("No posts available.");
+
 		}
 	}
 // Closes second loop div
@@ -369,14 +392,21 @@ document.write("</div>");
 
 
 // Place some more logs on the fire. Useful for all scenarios. Because fireplaces are cozy
-console.log(
-	"\n%c  Posts allowed by API    : 50\n\n", "font-weight: bold;");
-console.log(
-	"Posts available in feed : " + postsTotal +
-	"\n%c- Posts shown on page     : " + postsShown + " \n",
-	"border-bottom: 1px solid;");
-console.log(
-	"  Posts not shown on page : " + postsNotShown + " \n\n"
-	);
-console.log(
-	"tumblr-sans-tumblr.js Complete");
+
+if(debugMode == true) {
+
+	if(extraLogs == true) {
+
+		console.log(
+			"\n%c  Posts allowed by API    : 50\n\n", "font-weight: bold; color: red;");
+		console.log(
+			" Posts available in feed : " + postsTotal +
+			"\n%c- Posts shown on page     : " + postsShown + " \n",
+			"border-bottom: 1px solid;");
+		console.log(
+			" Posts not shown on page : " + postsNotShown + " \n\n"
+			);
+		console.log(
+			"tumblr-sans-tumblr.js Complete");
+	}
+}
